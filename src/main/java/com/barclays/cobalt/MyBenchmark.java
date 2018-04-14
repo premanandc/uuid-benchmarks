@@ -41,14 +41,15 @@ import org.openjdk.jmh.annotations.Warmup;
 
 import java.util.UUID;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static org.openjdk.jmh.annotations.Mode.AverageTime;
 import static org.openjdk.jmh.annotations.Mode.Throughput;
 
 @State(Scope.Thread)
 @Warmup(iterations = 1, batchSize = 1000)
-@Measurement(iterations = 10, batchSize = 100000)
-@BenchmarkMode({Throughput})
-@OutputTimeUnit(SECONDS)
+@Measurement(iterations = 10, batchSize = 1000)
+@BenchmarkMode({Throughput, AverageTime})
+@OutputTimeUnit(MILLISECONDS)
 public class MyBenchmark {
 
   @Benchmark
@@ -59,11 +60,6 @@ public class MyBenchmark {
   @Benchmark
   public String name() {
     return UUID.nameUUIDFromBytes("test string".getBytes()).toString();
-  }
-
-  @Benchmark
-  public String customName() {
-    return new com.eaio.uuid.UUID("test string").toString();
   }
 
   @Benchmark
