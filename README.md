@@ -2,6 +2,10 @@
 
 Benchmarks for UUID generation
 
+## Libraries being compared
+* `java.util.UUID`
+* `com.eaio.uuid.UUID`
+
 ## Pre-requisites
 * JDK 8
 * Maven 3.x
